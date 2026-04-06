@@ -1,0 +1,70 @@
+---
+import { resumeData } from '../data/resume';
+---
+
+<section class="max-w-6xl mx-auto px-6 py-12 md:py-24" id="about">
+  <!-- Terminal Window -->
+  <div class="border relative overflow-hidden" style="background-color: var(--color-surface-container-lowest); border-color: rgba(65, 71, 84, 0.2)">
+    <!-- Terminal Header -->
+    <div class="px-4 py-2 flex items-center gap-2" style="background-color: var(--color-surface-container-highest)">
+      <div class="flex gap-1.5">
+        <div class="w-3 h-3" style="border: 1px solid rgba(65, 71, 84, 0.3)"></div>
+        <div class="w-3 h-3" style="border: 1px solid rgba(65, 71, 84, 0.3)"></div>
+        <div class="w-3 h-3" style="border: 1px solid rgba(65, 71, 84, 0.3)"></div>
+      </div>
+      <div class="text-[10px] font-mono ml-4" style="color: var(--color-secondary); opacity: 0.7">bash — architect@dvlad-system</div>
+    </div>
+
+    <!-- Terminal Content -->
+    <div class="p-8 md:p-12 relative">
+      <div class="mb-6">
+        <span class="font-mono mr-2" style="color: var(--color-primary)">&gt;</span>
+        <span class="text-sm font-mono" style="color: var(--color-on-surface-variant)">init --profile "{resumeData.name}"</span>
+      </div>
+
+      <h1 class="text-4xl md:text-7xl font-bold headline-font leading-tight tracking-tighter mb-8">
+        Architecting the <span class="text-primary">Future</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl max-w-3xl mb-12 font-light leading-relaxed" style="color: var(--color-secondary)">
+        {resumeData.title.split('|').map((part, i) => (
+          <span>{i > 0 ? <span style="color: var(--color-on-surface-variant)"> | </span> : ''}{part.trim()}</span>
+        ))}
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 pt-8" style="border-top: 1px solid rgba(65, 71, 84, 0.1)">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest mb-2" style="color: var(--color-primary)">STATUS_ACTIVE</div>
+          <div class="text-lg" style="color: var(--color-on-surface)">Senior Infrastructure Engineer @ Roland Berger</div>
+        </div>
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest mb-2" style="color: var(--color-secondary)">CORE_STACK</div>
+          <div class="text-lg" style="color: var(--color-on-surface)">Azure, K8s, Terraform</div>
+        </div>
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest mb-2" style="color: var(--color-on-surface-variant)">LOCATION</div>
+          <div class="text-lg" style="color: var(--color-on-surface)">{resumeData.locationDisplay}</div>
+        </div>
+      </div>
+
+      <!-- Visual Bleed Background (Terraform code) -->
+      <div class="absolute -right-20 -bottom-20 opacity-5 pointer-events-none hidden lg:block">
+        <div class="text-[8px] font-mono leading-none" style="color: var(--color-primary)">
+          <pre>resource "azurerm_kubernetes_cluster" "prod" &#123;
+    name                = "dvlad-architect-cluster"
+    location            = "West Europe"
+    dns_prefix          = "dvlad-prod"
+    default_node_pool &#123;
+        name       = "default"
+        node_count = 3
+        vm_size    = "Standard_D2_v2"
+    &#125;
+    identity &#123;
+        type = "SystemAssigned"
+    &#125;
+&#125;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import { resumeData } from '../data/resume';
+---
+
+<section class="py-24" style="background-color: var(--color-surface-container-low)" id="projects">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="flex flex-col items-center mb-16 gap-6">
+      <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase">Project Repository</h2>
+      <div class="flex gap-4">
+        <span class="text-xs font-mono flex items-center gap-2" style="color: var(--color-primary)">
+          <span class="w-2 h-2" style="background-color: var(--color-primary)"></span> 24 DEPLOYED
+        </span>
+        <span class="text-xs font-mono flex items-center gap-2" style="color: var(--color-secondary)">
+          <span class="w-2 h-2" style="background-color: var(--color-secondary)"></span> 12 IN_PROGRESS
+        </span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {resumeData.projects.map(project => (
+        <div class="project-card">
+          <div class="flex justify-between items-start mb-6">
+            <span class={`material-symbols-outlined text-3xl ${project.iconColor === 'primary' ? 'text-primary' : 'text-secondary'}`}>
+              {project.icon}
+            </span>
+            <span class="text-[10px] font-mono uppercase tracking-tighter" style="color: var(--color-outline-variant)">Repo: {project.repo}</span>
+          </div>
+
+          <h3 class="text-lg font-bold headline-font mb-4" style={project.iconColor === 'primary' ? 'color: var(--color-primary)' : 'color: var(--color-secondary)'}>
+            {project.title}
+          </h3>
+
+          <p class="text-sm mb-6 leading-relaxed" style="color: var(--color-on-surface-variant)">
+            {project.description}
+          </p>
+
+          <div class="flex gap-2">
+            {project.tags.map(tag => (
+              <span class="text-[9px] font-mono px-2 py-0.5" style="background-color: var(--color-surface-container); color: var(--color-on-surface-variant)">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <button class="btn-secondary">
+      LOAD_MORE_PROJECTS [FETCH_REPOS]
+    </button>
+  </div>
+</section>

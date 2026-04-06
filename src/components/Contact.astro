@@ -1,0 +1,80 @@
+---
+import { resumeData } from '../data/resume';
+---
+
+<section class="py-24 border-t" style="background-color: var(--color-surface-container-low); border-color: rgba(65, 71, 84, 0.1)" id="contact">
+  <div class="max-w-4xl mx-auto px-6 flex flex-col items-center">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase mb-4">Initialize Project</h2>
+      <p class="max-w-md" style="color: var(--color-on-surface-variant)">Send a deployment request to start a collaboration.</p>
+    </div>
+
+    <div class="border p-8 relative w-full" style="background-color: var(--color-surface-container-lowest); border-color: rgba(65, 71, 84, 0.4); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5)">
+      <div class="absolute top-0 right-0 p-4 font-mono text-[10px] uppercase" style="color: var(--color-outline-variant)">input.yaml</div>
+
+      <form class="space-y-8" action="https://formsubmit.co/ajax/{resumeData.email}" method="POST" data-netlify="true">
+        <input type="hidden" name="_subject" value="New Deployment Request from Portfolio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <label class="block text-[10px] font-mono uppercase mb-2" style="color: var(--color-primary)">request_id (name)</label>
+            <input
+              class="w-full px-3 py-3 transition-colors"
+              style="background-color: rgba(42, 42, 42, 0.3); border: none; border-bottom: 2px solid rgba(65, 71, 84, 0.6); color: var(--color-on-surface)"
+              placeholder="Your Name"
+              type="text"
+              name="name"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-[10px] font-mono uppercase mb-2" style="color: var(--color-primary)">callback_address (email)</label>
+            <input
+              class="w-full px-3 py-3 transition-colors"
+              style="background-color: rgba(42, 42, 42, 0.3); border: none; border-bottom: 2px solid rgba(65, 71, 84, 0.6); color: var(--color-on-surface)"
+              placeholder="email@address.com"
+              type="email"
+              name="email"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-mono uppercase mb-2" style="color: var(--color-primary)">deployment_specs (message)</label>
+          <textarea
+            class="w-full px-3 py-3 resize-none transition-colors"
+            style="background-color: rgba(42, 42, 42, 0.3); border: none; border-bottom: 2px solid rgba(65, 71, 84, 0.6); color: var(--color-on-surface)"
+            placeholder="Describe your infrastructure needs..."
+            rows="4"
+            name="message"
+            required
+          ></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center pt-4 gap-6">
+          <div class="text-[10px] font-mono text-center sm:text-left" style="color: var(--color-outline-variant)">
+            <div>endpoint: {resumeData.email}</div>
+            <div>status: listening_on_all_ports</div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a
+              href="/CV_Daniel_Vlad.pdf"
+              download="CV_Daniel_Vlad.pdf"
+              class="btn-secondary text-center"
+            >
+              <span class="material-symbols-outlined text-sm mr-2">download</span>
+              DOWNLOAD_CV
+            </a>
+            <button type="submit" class="btn-primary w-full sm:w-auto">
+              PUSH_TO_PROD
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

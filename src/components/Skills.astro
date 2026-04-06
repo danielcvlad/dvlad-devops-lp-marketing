@@ -1,0 +1,91 @@
+---
+import { resumeData } from '../data/resume';
+---
+
+<section class="py-24 max-w-6xl mx-auto px-6">
+  <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="text-center lg:text-left flex flex-col items-center lg:items-start">
+      <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase mb-6">Technical Stack</h2>
+      <p class="mb-8 max-w-md" style="color: var(--color-on-surface-variant)">
+        A systematic breakdown of my technical capabilities, structured for deployment and orchestration efficiency.
+      </p>
+
+      <div class="space-y-4 inline-block text-left">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 flex items-center justify-center" style="background-color: rgba(34, 167, 0, 0.1)">
+            <span class="material-symbols-outlined" style="color: var(--color-primary)">cloud</span>
+          </div>
+          <div>
+            <div class="text-sm font-bold">Multi-Cloud Strategy</div>
+            <div class="text-xs font-mono" style="color: var(--color-on-surface-variant)">Azure (Expert), AWS, GCP</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 flex items-center justify-center" style="background-color: rgba(68, 143, 255, 0.1)">
+            <span class="material-symbols-outlined" style="color: var(--color-secondary)">layers</span>
+          </div>
+          <div>
+            <div class="text-sm font-bold">Orchestration & Tooling</div>
+            <div class="text-xs font-mono" style="color: var(--color-on-surface-variant)">Kubernetes, Docker, Helm</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 flex items-center justify-center" style="background-color: var(--color-surface-container-highest)">
+            <span class="material-symbols-outlined" style="color: var(--color-primary)">code</span>
+          </div>
+          <div>
+            <div class="text-sm font-bold">Infrastructure as Code</div>
+            <div class="text-xs font-mono" style="color: var(--color-on-surface-variant)">Terraform, Bicep, Ansible</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 flex items-center justify-center" style="background-color: var(--color-surface-container-highest)">
+            <span class="material-symbols-outlined" style="color: var(--color-secondary)">sync</span>
+          </div>
+          <div>
+            <div class="text-sm font-bold">CI/CD & Automation</div>
+            <div class="text-xs font-mono" style="color: var(--color-on-surface-variant)">Azure DevOps, Jenkins, GitHub Actions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YAML Code Block -->
+    <div class="border p-6 code-font text-xs md:text-sm leading-relaxed overflow-x-auto terminal-glow mx-auto lg:mx-0 w-full max-w-lg" style="background-color: var(--color-surface-container-lowest); border-color: rgba(65, 71, 84, 0.3)">
+      <div class="mb-4" style="color: var(--color-secondary); opacity: 0.5"># technical_capabilities.yaml</div>
+      <div class="space-y-1">
+        <div><span class="text-primary">cloud_platforms:</span></div>
+        <div class="pl-4"><span class="text-secondary">-</span> microsoft_azure (expert)</div>
+        <div class="pl-4"><span class="text-secondary">-</span> aws</div>
+        <div class="pl-4"><span class="text-secondary">-</span> google_cloud</div>
+        <div class="pl-4"><span class="text-secondary">-</span> digital_ocean</div>
+
+        <div class="mt-4"><span class="text-primary">infrastructure_as_code:</span></div>
+        <div class="pl-4"><span class="text-secondary">-</span> terraform</div>
+        <div class="pl-4"><span class="text-secondary">-</span> bicep</div>
+        <div class="pl-4"><span class="text-secondary">-</span> ansible</div>
+        <div class="pl-4"><span class="text-secondary">-</span> arm_templates</div>
+
+        <div class="mt-4"><span class="text-primary">cicd_pipelines:</span></div>
+        <div class="pl-4"><span class="text-secondary">-</span> azure_devops</div>
+        <div class="pl-4"><span class="text-secondary">-</span> github_actions</div>
+        <div class="pl-4"><span class="text-secondary">-</span> jenkins</div>
+        <div class="pl-4"><span class="text-secondary">-</span> gitlab_ci</div>
+
+        <div class="mt-4"><span class="text-primary">observability:</span></div>
+        <div class="pl-4"><span class="text-secondary">-</span> prometheus_grafana</div>
+        <div class="pl-4"><span class="text-secondary">-</span> azure_monitor</div>
+        <div class="pl-4"><span class="text-secondary">-</span> new_relic</div>
+
+        <div class="mt-4"><span class="text-primary">container_orchestration:</span></div>
+        <div class="pl-4"><span class="text-secondary">-</span> kubernetes (k8s)</div>
+        <div class="pl-4"><span class="text-secondary">-</span> docker</div>
+        <div class="pl-4"><span class="text-secondary">-</span> helm</div>
+        <div class="pl-4"><span class="text-secondary">-</span> argocd</div>
+      </div>
+    </div>
+  </div>
+</section>
