@@ -16,6 +16,15 @@ const certBadges: Record<string, { bg: string; label: string }> = {
     label: "Specialty"
   }
 };
+
+// Microsoft Learn credential verification URLs
+const verifyUrls: Record<string, string> = {
+  "AZ-400": "https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=AZ-400&verify=True",
+  "AZ-305": "https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=AZ-305&verify=True",
+  "AZ-500": "https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=AZ-500&verify=True",
+  "AZ-104": "https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=AZ-104&verify=True",
+  "AZ-140": "https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=AZ-140&verify=True",
+};
 ---
 
 <section class="py-24 max-w-6xl mx-auto px-6 text-center">
@@ -23,24 +32,27 @@ const certBadges: Record<string, { bg: string; label: string }> = {
 
   <div class="max-w-3xl mx-auto border overflow-hidden" style="background-color: var(--color-surface-container-lowest); border-color: rgba(65, 71, 84, 0.2)">
     <!-- Terminal Header -->
-    <div class="px-6 py-2 flex items-center justify-between" style="background-color: var(--color-surface-container-highest); border-bottom: 1px solid rgba(65, 71, 84, 0.2)">
+    <div class="px-4 py-2 flex items-center justify-between" style="background-color: var(--color-surface-container-highest); border-bottom: 1px solid rgba(65, 71, 84, 0.2)">
       <span class="text-[10px] font-mono uppercase tracking-widest" style="color: var(--color-secondary); opacity: 0.7">
         Verified Credentials // Auth_Success
       </span>
       <div class="flex gap-1.5">
-        <div class="w-2 h-2" style="background-color: var(--color-primary); opacity: 0.5"></div>
+        <div class="w-2 h-2 rounded-full" style="background-color: var(--color-primary); opacity: 0.5"></div>
       </div>
     </div>
 
     <!-- Certifications List -->
     <div class="p-0 text-left">
       {resumeData.certifications.map((cert, index) => (
-        <div
-          class="flex items-center group cursor-pointer transition-colors"
+        <a
+          href={verifyUrls[cert.id] || `https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=${cert.id}&verify=True`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center group no-underline transition-colors hover:no-underline"
           style={index === resumeData.certifications.length - 1 ? '' : 'border-bottom: 1px solid rgba(65, 71, 84, 0.1)'}
         >
-          <div class="px-5 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(65, 71, 84, 0.1)">
-            <div class="w-12 h-12 flex items-center justify-center">
+          <div class="px-4 py-4 flex items-center justify-center shrink-0" style="border-right: 1px solid rgba(65, 71, 84, 0.1)">
+            <div class="w-10 h-10 flex items-center justify-center">
               <img
                 src={certBadges[cert.level.toLowerCase() as keyof typeof certBadges].bg}
                 alt={cert.level}
@@ -49,20 +61,20 @@ const certBadges: Record<string, { bg: string; label: string }> = {
               />
             </div>
           </div>
-          <div class="px-6 py-4 flex-grow flex items-center justify-between">
-            <div>
-              <div class={`text-sm font-bold headline-font mb-0.5 uppercase tracking-tight ${cert.color === 'primary' ? 'text-primary' : 'text-secondary'}`}>
+          <div class="px-5 py-4 flex-grow flex items-center justify-between gap-4">
+            <div class="text-left">
+              <div class={`text-sm font-bold headline-font mb-0.5 tracking-tight ${cert.color === 'primary' ? 'text-primary' : 'text-secondary'}`}>
                 {cert.name}
               </div>
-              <div class="text-[10px] font-mono uppercase" style="color: var(--color-outline-variant)">
-                ID: {cert.id} // {cert.issuer}
+              <div class="text-[10px] font-mono" style="color: var(--color-outline-variant)">
+                {cert.id} · {cert.issuer} · {cert.level}
               </div>
             </div>
-            <div class="hidden sm:block text-[9px] font-mono uppercase tracking-tighter" style="color: var(--color-primary); opacity: 0.4">
-              status: [VERIFIED_SECURE]
+            <div class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[9px] font-mono tracking-tight" style="color: var(--color-primary)">
+              Verify ↗
             </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
