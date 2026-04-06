@@ -4,9 +4,9 @@ import { resumeData } from '../data/resume';
 
 <header class="fixed top-0 left-0 right-0 z-50 border-b-0" style="background-color: var(--color-background)">
   <div class="flex justify-between items-center w-full px-6 py-4 max-w-[1920px] mx-auto relative">
-    <div class="text-xl font-black tracking-tighter headline-font" style="color: var(--color-primary)">
-      {resumeData.name}@{resumeData.title.split('|')[0].trim()}
-    </div>
+    <a href="#about" class="text-xl font-black tracking-tighter headline-font" style="color: var(--color-primary)">
+      dvlad
+    </a>
 
     <nav class="hidden md:flex items-center gap-8">
       <a class="pb-1 headline-font text-sm tracking-widest uppercase" style="color: var(--color-primary); border-bottom: 1px solid var(--color-primary)" href="#about">About</a>
@@ -17,12 +17,12 @@ import { resumeData } from '../data/resume';
 
     <div class="flex items-center gap-4">
       <div class="hidden sm:flex gap-4 mr-4">
-        <span class="material-symbols-outlined cursor-pointer" style="color: var(--color-primary)">terminal</span>
-        <span class="material-symbols-outlined cursor-pointer" style="color: var(--color-secondary)">cloud_done</span>
+        <a href="https://github.com/danielcvlad" target="_blank" class="material-symbols-outlined" style="color: var(--color-primary)" title="GitHub">terminal</a>
+        <a href="https://linkedin.com/in/dancvlad" target="_blank" class="material-symbols-outlined" style="color: var(--color-secondary)" title="LinkedIn">cloud_done</a>
       </div>
-      <button class="btn-primary">
+      <a href="#contact" class="btn-primary">
         HIRE_ME
-      </button>
+      </a>
     </div>
 
     <div class="absolute bottom-0 left-0 w-full h-[1px]" style="background: linear-gradient(to right, var(--color-primary), transparent, transparent)"></div>
