@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import faviconSvg from '../assets/favicon.svg';
 
 interface Props {
   title: string;
@@ -7,12 +8,14 @@ interface Props {
 }
 
 const { title, description = "DevOps Engineer & Cloud Solutions Architect specializing in orchestrating high-scale infrastructure through Azure, CI/CD automation, and Infrastructure as Code." } = Astro.props;
+const faviconUrl = faviconSvg.src;
 ---
 
 <!doctype html>
 <html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href={faviconUrl} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
 <link rel="preconnect" href="https://fonts.googleapis.com">
