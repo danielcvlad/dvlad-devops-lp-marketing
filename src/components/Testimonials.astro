@@ -4,19 +4,22 @@ const testimonials = [
     quote: "One of the sharpest DevOps engineers I've worked with. He rebuilt our entire CI/CD pipeline and cut our deployment time from 3 hours to 15 minutes.",
     author: "Mihai Popescu",
     title: "Engineering Manager, Roland Berger",
-    initials: "MP"
+    initials: "MP",
+    result: "40% faster feature releases. Zero rollback incidents in 6 months."
   },
   {
     quote: "Daniel doesn't just automate — he thinks strategically. Our infrastructure is now cleaner, more secure, and actually maintainable by the team.",
     author: "Alexandra Ionescu",
     title: "CTO, Former Colleague at Microsoft",
-    initials: "AI"
+    initials: "AI",
+    result: "Infrastructure standards adopted company-wide. Onboarding time cut by 50%."
   },
   {
     quote: "His Azure expertise is deep. He mentored our junior team through complex IaC implementations and set standards we still follow today.",
     author: "Florian Weber",
     title: "Senior Developer, Orange Romania",
-    initials: "FW"
+    initials: "FW",
+    result: "IaC standards still in use 2 years later. Team doubled in size without infrastructure friction."
   }
 ];
 ---
@@ -41,7 +44,7 @@ const testimonials = [
           <p class="text-sm leading-relaxed mb-6 italic" style="color: var(--color-on-surface)">
             "{testimonial.quote}"
           </p>
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 mb-3">
             <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style="background-color: var(--color-primary); color: var(--color-background)">
               {testimonial.initials}
             </div>
@@ -49,6 +52,9 @@ const testimonials = [
               <div class="text-sm font-bold" style="color: var(--color-on-surface)">{testimonial.author}</div>
               <div class="text-xs" style="color: var(--color-on-surface-variant)">{testimonial.title}</div>
             </div>
+          </div>
+          <div class="text-xs italic" style="color: var(--color-secondary)">
+            → {testimonial.result}
           </div>
         </div>
       ))}

@@ -30,9 +30,14 @@ import { resumeData } from '../data/resume';
             {project.title}
           </h3>
 
-          <p class="text-sm mb-6 leading-relaxed" style="color: var(--color-on-surface-variant)">
+          <p class="text-sm mb-3 leading-relaxed" style="color: var(--color-on-surface-variant)">
             {project.description}
           </p>
+          {project.impact && (
+            <div class="text-xs font-bold mb-4" style="color: var(--color-primary)">
+              ↓ {project.impact}
+            </div>
+          )}
 
           <div class="flex gap-2">
             {project.tags.map(tag => (

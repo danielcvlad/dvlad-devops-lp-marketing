@@ -124,15 +124,17 @@ export const resumeData = {
       description: "Global image distribution system using Azure Compute Gallery and Packer, integrated with GitHub Actions.",
       tags: ["PACKER", "AZURE"],
       icon: "hub",
-      iconColor: "primary"
+      iconColor: "primary",
+      impact: "70% faster image provisioning across 5 regions"
     },
     {
       repo: "019",
-      title: "Microservices with Helm",
+      title: "Microservices with Helm (AKS)",
       description: "Dynamic scaling architecture for 50+ microservices on AKS using Helm charts and ArgoCD.",
       tags: ["K8S", "HELM"],
       icon: "architecture",
-      iconColor: "secondary"
+      iconColor: "secondary",
+      impact: "60% faster release cycles. Zero-downtime deployments."
     },
     {
       repo: "067",
@@ -140,7 +142,8 @@ export const resumeData = {
       description: "Automated security auditing using Azure Policy and Terraform Sentinel for financial sector standards.",
       tags: ["POLICY", "IAC"],
       icon: "security",
-      iconColor: "primary"
+      iconColor: "primary",
+      impact: "Audit prep time: 3 weeks → 3 days"
     },
     {
       repo: "088",
@@ -148,7 +151,8 @@ export const resumeData = {
       description: "Scalable developer environment platform based on Azure DevCenter and custom Bicep templates.",
       tags: ["BICEP", "AZURE"],
       icon: "lan",
-      iconColor: "secondary"
+      iconColor: "secondary",
+      impact: "500+ developer environments provisioned on-demand"
     },
     {
       repo: "031",
@@ -156,7 +160,8 @@ export const resumeData = {
       description: "Hardened AVD deployment with Zero Trust network architecture and FSLogix.",
       tags: ["AVD", "ZERO_TRUST"],
       icon: "vpn_lock",
-      iconColor: "primary"
+      iconColor: "primary",
+      impact: "Zero security incidents across 200+ remote workers"
     },
     {
       repo: "104",
@@ -164,7 +169,8 @@ export const resumeData = {
       description: "Containerized Jenkins orchestration with dynamic agents and HashiCorp Vault for secret management.",
       tags: ["JENKINS", "VAULT"],
       icon: "rocket_launch",
-      iconColor: "secondary"
+      iconColor: "secondary",
+      impact: "Pipeline reliability: 95% → 99.9% uptime"
     }
   ],
 
