@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://danielcvlad.github.io/dvlad-devops-lp-marketing/
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
