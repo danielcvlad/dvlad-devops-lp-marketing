@@ -103,26 +103,26 @@ const recentJobs = resumeData.experience.slice(0, visibleCount);
         ))}
       </div>
 
-      <!-- Toggle button */}
+      {/* Toggle button */}
       {earlierJobs.length > 0 && (
-        <div class="pl-12">
+        <div class="pl-12 mt-6">
           <button
             id="toggle-earlier"
-            class="text-sm font-mono transition-opacity hover:opacity-70 mt-2"
-            style="color: var(--color-on-surface-variant)"
+            class="btn-secondary text-xs"
+            style="padding: 8px 20px;"
             onclick="
               const el = document.getElementById('earlier-experience');
               const btn = document.getElementById('toggle-earlier');
               if (el.classList.contains('hidden')) {
                 el.classList.remove('hidden');
-                btn.textContent = '[–] SHOW LESS';
+                btn.innerHTML = '<span class=&quot;material-symbols-outlined text-sm&quot; style=&quot;vertical-align:middle&quot;>remove</span> SHOW LESS';
               } else {
                 el.classList.add('hidden');
-                btn.textContent = '[+] SHOW EARLIER EXPERIENCE';
+                btn.innerHTML = '<span class=&quot;material-symbols-outlined text-sm&quot; style=&quot;vertical-align:middle&quot;>add</span> SHOW EARLIER EXPERIENCE';
               }
             "
           >
-            [+] SHOW EARLIER EXPERIENCE
+            <span class="material-symbols-outlined text-sm" style="vertical-align: middle">add</span> SHOW EARLIER EXPERIENCE
           </button>
         </div>
       )}
