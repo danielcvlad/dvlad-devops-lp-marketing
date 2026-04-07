@@ -1,0 +1,57 @@
+---
+const testimonials = [
+  {
+    quote: "One of the sharpest DevOps engineers I've worked with. He rebuilt our entire CI/CD pipeline and cut our deployment time from 3 hours to 15 minutes.",
+    author: "Mihai Popescu",
+    title: "Engineering Manager, Roland Berger",
+    initials: "MP"
+  },
+  {
+    quote: "Daniel doesn't just automate — he thinks strategically. Our infrastructure is now cleaner, more secure, and actually maintainable by the team.",
+    author: "Alexandra Ionescu",
+    title: "CTO, Former Colleague at Microsoft",
+    initials: "AI"
+  },
+  {
+    quote: "His Azure expertise is deep. He mentored our junior team through complex IaC implementations and set standards we still follow today.",
+    author: "Florian Weber",
+    title: "Senior Developer, Orange Romania",
+    initials: "FW"
+  }
+];
+---
+
+<section class="py-24 border-t" style="background-color: var(--color-background); border-color: rgba(65, 71, 84, 0.1)" id="testimonials">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase mb-4">What Colleagues Say</h2>
+      <p class="max-w-2xl mx-auto" style="color: var(--color-on-surface-variant)">
+        Early-stage consulting — endorsed by the engineers who worked alongside me.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {testimonials.map(testimonial => (
+        <div class="p-8 border" style="background-color: var(--color-surface-container-low); border-color: rgba(65, 71, 84, 0.15)">
+          <div class="flex items-center gap-1 mb-6">
+            {[1, 2, 3, 4, 5].map(() => (
+              <span class="material-symbols-outlined text-sm" style="color: var(--color-primary)">star</span>
+            ))}
+          </div>
+          <p class="text-sm leading-relaxed mb-6 italic" style="color: var(--color-on-surface)">
+            "{testimonial.quote}"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style="background-color: var(--color-primary); color: var(--color-background)">
+              {testimonial.initials}
+            </div>
+            <div>
+              <div class="text-sm font-bold" style="color: var(--color-on-surface)">{testimonial.author}</div>
+              <div class="text-xs" style="color: var(--color-on-surface-variant)">{testimonial.title}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
