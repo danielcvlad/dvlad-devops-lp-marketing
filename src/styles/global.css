@@ -162,6 +162,7 @@ html.light .icon-github { color: #24292f; }
 
 .icon-github:hover,
 .icon-gitlab:hover,
+/* Social icons hover */
 .icon-linkedin:hover {
   opacity: 0.7;
   transform: scale(1.15);
