@@ -150,7 +150,7 @@ export const resumeData = {
     },
     {
       repo: "088",
-      title: "DevBox Landing Zone",
+      title: "Developer Workstations - DevBox Landing Zone",
       description: "Scalable developer environment platform based on Azure DevCenter and custom Bicep templates.",
       tags: ["BICEP", "AZURE"],
       icon: "lan",
@@ -159,7 +159,7 @@ export const resumeData = {
     },
     {
       repo: "031",
-      title: "Secure Remote Workspace",
+      title: "Harden AVD Environments and Streamed Apps",
       description: "Hardened AVD deployment with Zero Trust network architecture and FSLogix.",
       tags: ["AVD", "ZERO_TRUST"],
       icon: "vpn_lock",
