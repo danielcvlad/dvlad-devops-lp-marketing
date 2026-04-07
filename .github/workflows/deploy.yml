@@ -20,6 +20,8 @@ jobs:
     environment:
       name: github-pages
       url: https://danielcvlad.github.io/dvlad-devops-lp-marketing/
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
@@ -40,9 +42,11 @@ jobs:
           NODE_ENV: production
           
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4.0.0
+        uses: actions/upload-artifact@v4.6.2
         with:
+          name: github-pages
           path: dist
+          include-hidden-files: true
 
       - name: Deploy to GitHub Pages
         id: deployment
