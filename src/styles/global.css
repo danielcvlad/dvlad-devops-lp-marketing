@@ -1,8 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
+/* Custom CSS Variables */
+:root {
   --color-primary: #34e507;
-  --color-primary-container: #22a700;
   --color-primary-fixed: #79ff59;
   --color-secondary: #abc7ff;
   --color-secondary-container: #448fff;
@@ -15,7 +17,7 @@
   --color-on-surface: #e5e2e1;
   --color-on-surface-variant: #c1c6d7;
   --color-outline-variant: #414754;
-
+  
   --font-headline: 'Outfit', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
