@@ -150,6 +150,18 @@ input::placeholder, textarea::placeholder {
   opacity: 0.7;
 }
 
+/* Social icons — brand colors per theme */
+html.dark .icon-gitlab { color: var(--color-primary); }
+html.light .icon-gitlab { color: #FC6D26; }
+
+html.dark .icon-linkedin { color: var(--color-secondary); }
+html.light .icon-linkedin { color: #0A66C2; }
+
+html.dark .icon-github { color: var(--color-on-surface-variant); }
+html.light .icon-github { color: #24292f; }
+
+.icon-github:hover { opacity: 0.8; }
+
 /* Mobile Responsive Fixes */
 @media (max-width: 640px) {
   .btn-primary, .btn-secondary {
