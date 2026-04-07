@@ -40,7 +40,7 @@ export const resumeData = {
         "Providing expert guidance to S500 customers across Storage, Connectivity, Management, and Configuration domains",
         "Leading high-severity production troubleshooting: no-boot scenarios, kernel panics, network issues",
         "Earned multiple Customer Hero recognitions with consistently high CSAT scores",
-        "Activated as an Escalation Point for Linux, offering mentorship and delivering Linux training organization-wide"
+        "Activated as Linux Escalation Point for critical issues, offering mentorship and delivering trainings organization-wide"
       ],
       tags: ["Azure Networking", "Identity", "App Services", "Linux"]
     },
