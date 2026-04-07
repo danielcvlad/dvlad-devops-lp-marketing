@@ -42,11 +42,9 @@ jobs:
           NODE_ENV: production
           
       - name: Upload artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
-          name: github-pages
           path: dist
-          include-hidden-files: true
 
       - name: Deploy to GitHub Pages
         id: deployment
