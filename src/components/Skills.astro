@@ -1,5 +1,6 @@
 ---
 import { resumeData } from '../data/resume';
+import KubernetesLogo from '../assets/kubernetes-logo.svg';
 ---
 
 <section class="py-24 max-w-6xl mx-auto px-6">
@@ -26,7 +27,7 @@ import { resumeData } from '../data/resume';
 
         <div class="flex items-center gap-4">
           <div class="w-10 h-10 flex items-center justify-center" style="background-color: rgba(68, 143, 255, 0.1)">
-            <span class="material-symbols-outlined text-2xl" style="color: var(--color-secondary)">hub</span>
+            <img src={KubernetesLogo.src} alt="Kubernetes" width="32" height="32" class="object-contain" />
           </div>
           <div class="self-center">
             <div class="text-sm font-bold">Orchestration & Tooling</div>
