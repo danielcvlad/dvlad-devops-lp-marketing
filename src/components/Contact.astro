@@ -1,6 +1,6 @@
 ---
 import { resumeData } from '../data/resume';
-const cvUrl = "/dvlad-devops-lp-marketing/CV_Daniel_Vlad.pdf";
+const cvUrl = "/CV_Daniel_Vlad.pdf";
 ---
 
 <section class="py-24 border-t" style="background-color: var(--color-surface-container-low); border-color: rgba(65, 71, 84, 0.1)" id="contact">
@@ -135,7 +135,7 @@ const cvUrl = "/dvlad-devops-lp-marketing/CV_Daniel_Vlad.pdf";
       // Web3Forms returns { success: true } or { success: false, message: "..." }
       // With no-cors mode the response is opaque — we treat all 2xx as success
       if (response.ok) {
-        window.location.href = '/dvlad-devops-lp-marketing/thank-you';
+        window.location.href = '/thank-you';
       } else {
         const body = await response.json().catch(() => ({}));
         throw new Error(body.message || `Server error ${response.status}`);
