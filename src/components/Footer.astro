@@ -1,5 +1,8 @@
 ---
 import { resumeData } from '../data/resume';
+const year = new Date().getFullYear();
+const startYear = 2026;
+const copyrightYear = year > startYear ? `${startYear}–${year}` : `${startYear}`;
 ---
 
 <footer class="border-t-0" style="background-color: var(--color-background)">
@@ -18,7 +21,7 @@ import { resumeData } from '../data/resume';
       </div>
 
       <div class="font-mono text-[10px] uppercase tracking-widest" style="color: var(--color-outline-variant)">
-        © 2026 Daniel Vlad
+© {copyrightYear} Daniel Vlad
       </div>
     </div>
   </div>
