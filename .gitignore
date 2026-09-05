@@ -4,3 +4,6 @@ dist/
 .env
 *.log
 .DS_Store
+
+# Local resume working copies — not part of the site build
+/dv-resume-*.pdf
