@@ -1,6 +1,6 @@
 ---
 import { resumeData } from '../data/resume';
-const cvUrl = "/CV_Daniel_Vlad.pdf";
+const cvUrl = resumeData.resumeUrl;
 ---
 
 <section class="py-24 border-t" style="background-color: var(--color-surface-container-low); border-color: rgba(65, 71, 84, 0.1)" id="contact">
@@ -9,18 +9,14 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
       <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase mb-4">Contact</h2>
       <p class="max-w-md" style="color: var(--color-on-surface-variant)">Book a free call to audit your environment and find out exactly what's slowing your deployments — and how to fix them.</p>
     </div>
-
     <div class="border p-8 relative w-full" style="background-color: var(--color-surface-container-lowest); border-color: var(--color-outline-variant); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15)">
       <div class="absolute top-0 right-0 p-4 font-mono text-[10px] uppercase" style="color: var(--color-outline-variant)">input.yaml</div>
-
       <form id="contact-form" class="space-y-8">
-        <!-- Web3Forms access key -->
         <input type="hidden" name="access_key" value="39325897-8e94-46da-b9b8-ac7d6853c960" />
         <input type="hidden" name="subject" value="New Lead — danielvlad.com" />
         <input type="hidden" name="from_name" value="danielvlad.com Contact Form" />
-        <!-- Honeypot: must stay empty — bots fill this -->
+        {/* Honeypot: must stay empty — bots fill this */}
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
-
         <div class="grid md:grid-cols-2 gap-8">
           <div>
             <label class="block text-[10px] font-mono uppercase mb-2" style="color: var(--color-primary)">Your Name</label>
@@ -45,7 +41,6 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
             />
           </div>
         </div>
-
         <div>
           <label class="block text-[10px] font-mono uppercase mb-2" style="color: var(--color-primary)">What's slowing your deployments?</label>
           <textarea
@@ -57,26 +52,21 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
             required
           ></textarea>
         </div>
-
-        <!-- Inline error message (hidden by default) -->
         <div id="form-error" class="hidden font-mono text-[11px] px-4 py-3 border" style="color: #f87171; border-color: #f87171; background-color: rgba(248,113,113,0.05)">
           <span class="material-symbols-outlined text-sm mr-1" style="vertical-align: middle; font-size: 14px;">error</span>
           <span id="form-error-msg">Something went wrong. Please try again or email me directly at {resumeData.email}</span>
         </div>
-
-        <!-- hCaptcha widget -->
+        {/* hCaptcha mounts here via web3forms script */}
         <div class="h-captcha" data-captcha="true" data-theme="dark" data-size="compact"></div>
-
         <div class="flex flex-col sm:flex-row justify-between items-center pt-4 gap-6">
           <div class="text-[10px] font-mono text-center sm:text-left" style="color: var(--color-outline-variant)">
             <div>endpoint: {resumeData.email}</div>
             <div>status: listening_on_all_ports</div>
           </div>
-
           <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a
               href={cvUrl}
-              download="CV_Daniel_Vlad.pdf"
+              download={resumeData.resumeFileName}
               class="btn-secondary text-center"
             >
               <span class="material-symbols-outlined text-sm mr-2">download</span>
@@ -94,7 +84,6 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
     </div>
   </div>
 </section>
-
 <script is:inline>
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
@@ -106,7 +95,6 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Client-side hCaptcha validation
     const hCaptchaToken = form.querySelector('textarea[name=h-captcha-response]').value;
     if (!hCaptchaToken) {
       errorMsg.textContent = 'Please complete the captcha challenge before sending.';
@@ -114,10 +102,8 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
       return;
     }
 
-    // Hide any previous error
     errorBox.classList.add('hidden');
 
-    // Loading state
     submitBtn.disabled = true;
     submitLabel.textContent = 'SENDING...';
     submitSpinner.classList.remove('hidden');
@@ -132,8 +118,6 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
         body: JSON.stringify(data),
       });
 
-      // Web3Forms returns { success: true } or { success: false, message: "..." }
-      // With no-cors mode the response is opaque — we treat all 2xx as success
       if (response.ok) {
         window.location.href = '/thank-you';
       } else {
@@ -146,7 +130,6 @@ const cvUrl = "/CV_Daniel_Vlad.pdf";
         : 'Something went wrong. Please try again or email directly.';
       errorBox.classList.remove('hidden');
 
-      // Reset button
       submitBtn.disabled = false;
       submitLabel.textContent = 'DEPLOY';
       submitSpinner.classList.add('hidden');

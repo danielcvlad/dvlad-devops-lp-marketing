@@ -8,7 +8,7 @@ import { resumeData } from '../data/resume';
       <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase">Project Repository</h2>
       <div class="flex gap-4">
         <span class="text-xs font-mono flex items-center gap-2" style="color: var(--color-primary)">
-          <span class="w-2 h-2" style="background-color: var(--color-primary)"></span> 12 DEPLOYED
+          <span class="w-2 h-2" style="background-color: var(--color-primary)"></span> {resumeData.projects.length} DEPLOYED
         </span>
         <span class="text-xs font-mono flex items-center gap-2" style="color: var(--color-secondary)">
           <span class="w-2 h-2" style="background-color: var(--color-secondary)"></span> MORE IN_PROGRESS
@@ -48,8 +48,14 @@ import { resumeData } from '../data/resume';
       ))}
     </div>
 
-    <button class="btn-secondary">
-      LOAD_MORE_PROJECTS [FETCH_REPOS]
-    </button>
+    <a
+      href={resumeData.gitlab}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-secondary inline-flex items-center gap-2"
+    >
+      VIEW_ALL_REPOS [GITLAB]
+      <span class="material-symbols-outlined text-sm" style="font-size: 16px;">open_in_new</span>
+    </a>
   </div>
 </section>

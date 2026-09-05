@@ -1,40 +1,26 @@
 ---
 import { resumeData } from '../data/resume';
 
-// Microsoft Learn certification badge URLs
-const certBadges: Record<string, { bg: string; label: string }> = {
-  expert: {
-    bg: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
-    label: "Expert"
-  },
-  associate: {
-    bg: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
-    label: "Associate"
-  },
-  specialty: {
-    bg: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-specialty-badge.svg",
-    label: "Specialty"
-  }
+// Levels with no Microsoft badge art fall back to a monogram tile.
+const certBadges: Record<string, string> = {
+  expert: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
+  associate: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+  specialty: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-specialty-badge.svg"
 };
 
-// Microsoft Learn credential verification URLs (from CV PDF)
-const verifyUrls: Record<string, string> = {
-  "AZ-400": "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/1121D1CBC6B643BC?sharingId=1831A122A9A3BA9",
-  "AZ-305": "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/36C8EF8009EDFAB9?sharingId=1831A122A9A3BA9",
-  "AZ-500": "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/6F2E319C960F8316?sharingId=1831A122A9A3BA9",
-  "AZ-104": "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/4DAD0DB97E5412CB?sharingId=1831A122A9A3BA9",
-  "AZ-140": "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/6EB334077409C7D?sharingId=1831A122A9A3BA9",
-};
+const certs = resumeData.certifications;
+const azureCount = certs.filter(c => c.issuer === "MICROSOFT").length;
 ---
 
 <section class="py-24 max-w-6xl mx-auto px-6 text-center">
-  <!-- JSON-LD Structured Data for Certifications -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Daniel Vlad",
-    "url": "https://danielcvlad.github.io/dvlad-devops-lp/",
-    "hasCredential": resumeData.certifications.map(cert => ({
+    "name": resumeData.name,
+    "jobTitle": resumeData.title,
+    "url": "https://danielvlad.com",
+    "sameAs": [resumeData.linkedin, resumeData.github, resumeData.gitlab],
+    "hasCredential": certs.map(cert => ({
       "@type": "EducationalOccupationalCredential",
       "credentialCategory": "certification",
       "name": cert.name,
@@ -46,12 +32,11 @@ const verifyUrls: Record<string, string> = {
       "educationalLevel": cert.level
     }))
   })} />
-
   <h2 class="text-3xl font-bold headline-font tracking-tighter uppercase mb-4">Credentials</h2>
-  <p class="mb-12" style="color: var(--color-on-surface-variant)">8 certifications across Azure, AWS, and Security</p>
-
+  <p class="mb-12" style="color: var(--color-on-surface-variant)">
+    {certs.length} certifications — {azureCount} Microsoft Azure, {certs.length - azureCount} DevOps &amp; DevSecOps
+  </p>
   <div class="max-w-3xl mx-auto border overflow-hidden" style="background-color: var(--color-surface-container-lowest); border-color: rgba(65, 71, 84, 0.2)">
-    <!-- Terminal Header -->
     <div class="px-4 py-2 flex items-center justify-between" style="background-color: var(--color-surface-container-highest); border-bottom: 1px solid rgba(65, 71, 84, 0.2)">
       <span class="text-[10px] font-mono uppercase tracking-widest" style="color: var(--color-secondary); opacity: 0.7">
         Verified Credentials // Auth_Success
@@ -60,42 +45,103 @@ const verifyUrls: Record<string, string> = {
         <div class="w-2 h-2 rounded-full" style="background-color: var(--color-primary); opacity: 0.5"></div>
       </div>
     </div>
-
-    <!-- Certifications List -->
     <div class="p-0 text-left">
-      {resumeData.certifications.map((cert, index) => (
-        <a
-          href={verifyUrls[cert.id] || `https://learn.microsoft.com/api/credentials/verify/?authority=emeaDefaults&code=${cert.id}&verify=True`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center group no-underline transition-colors hover:no-underline"
-          style={index === resumeData.certifications.length - 1 ? '' : 'border-bottom: 1px solid rgba(65, 71, 84, 0.1)'}
-        >
-          <div class="px-4 py-4 flex items-center justify-center shrink-0" style="border-right: 1px solid rgba(65, 71, 84, 0.1)">
-            <div class="w-10 h-10 flex items-center justify-center">
-              <img
-                src={certBadges[cert.level.toLowerCase() as keyof typeof certBadges].bg}
-                alt={`${cert.name} - ${cert.level} certification badge`}
-                class="w-full h-full object-contain"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <div class="px-5 py-4 flex-grow flex items-center justify-between gap-4">
-            <div class="text-left">
-              <div class="text-sm headline-font mb-0.5 tracking-tight" style="color: var(--color-on-surface)">
-                {cert.name}
+      {certs.map((cert, index) => {
+        const badge = certBadges[cert.level.toLowerCase()];
+        const rowStyle = index === certs.length - 1 ? '' : 'border-bottom: 1px solid rgba(65, 71, 84, 0.1)';
+        // A guessed verify URL is worse than no link at all.
+        const Tag = cert.verifyUrl ? 'a' : 'div';
+        const linkProps = cert.verifyUrl
+          ? { href: cert.verifyUrl, target: '_blank', rel: 'noopener noreferrer' }
+          : {};
+
+        return (
+          <Tag
+            {...linkProps}
+            class="flex items-center group no-underline transition-colors hover:no-underline"
+            style={rowStyle}
+          >
+            <div class="px-4 py-4 flex items-center justify-center shrink-0" style="border-right: 1px solid rgba(65, 71, 84, 0.1)">
+              <div class="w-10 h-10 flex items-center justify-center">
+                {badge ? (
+                  <img
+                    src={badge}
+                    alt={`${cert.name} — ${cert.level} certification badge`}
+                    class="w-full h-full object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    class="w-9 h-9 flex items-center justify-center font-mono text-[9px] font-bold tracking-tight border"
+                    style="border-color: var(--color-primary); color: var(--color-primary)"
+                    aria-hidden="true"
+                  >
+                    TWN
+                  </div>
+                )}
               </div>
-              <div class="text-[10px] font-mono" style="color: var(--color-outline-variant)">
-                {cert.id} · {cert.issuer} · {cert.level}
+            </div>
+            <div class="px-5 py-4 flex-grow flex items-center justify-between gap-4">
+              <div class="text-left">
+                <div class="text-sm headline-font mb-0.5 tracking-tight" style="color: var(--color-on-surface)">
+                  {cert.name}
+                </div>
+                <div class="text-[10px] font-mono" style="color: var(--color-outline-variant)">
+                  {cert.id} · {cert.issuer} · {cert.level}
+                </div>
               </div>
+              {cert.verifyUrl && (
+                <div class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[9px] font-mono tracking-tight" style="color: var(--color-primary)">
+                  Verify ↗
+                </div>
+              )}
             </div>
-            <div class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[9px] font-mono tracking-tight" style="color: var(--color-primary)">
-              Verify ↗
-            </div>
-          </div>
-        </a>
+          </Tag>
+        );
+      })}
+    </div>
+  </div>
+  <div class="max-w-3xl mx-auto mt-6 border p-5 text-left" style="background-color: var(--color-surface-container-lowest); border-color: rgba(65, 71, 84, 0.2)">
+    <div class="text-[10px] font-mono uppercase tracking-widest mb-4" style="color: var(--color-secondary); opacity: 0.7">
+      In Progress // Queued
+    </div>
+    <div class="flex flex-wrap gap-x-8 gap-y-3">
+      {resumeData.ongoingDevelopment.map(item => (
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background-color: var(--color-secondary); opacity: 0.6"></span>
+          <span class="text-sm" style="color: var(--color-on-surface)">{item.name}</span>
+          <span class="text-[10px] font-mono" style="color: var(--color-outline-variant)">{item.issuer}</span>
+        </div>
       ))}
+    </div>
+  </div>
+  <div class="max-w-3xl mx-auto mt-6 grid md:grid-cols-2 gap-6 text-left">
+    <div class="border p-5" style="border-color: rgba(65, 71, 84, 0.2)">
+      <div class="text-[10px] font-mono uppercase tracking-widest mb-4" style="color: var(--color-primary); opacity: 0.7">
+        Education
+      </div>
+      <div class="space-y-4">
+        {resumeData.education.map(item => (
+          <div>
+            <div class="text-sm headline-font" style="color: var(--color-on-surface)">{item.title}</div>
+            <div class="text-xs" style="color: var(--color-on-surface-variant)">{item.institution}</div>
+            <div class="text-[10px] font-mono mt-0.5" style="color: var(--color-outline-variant)">{item.period}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="border p-5" style="border-color: rgba(65, 71, 84, 0.2)">
+      <div class="text-[10px] font-mono uppercase tracking-widest mb-4" style="color: var(--color-primary); opacity: 0.7">
+        Languages
+      </div>
+      <div class="space-y-3">
+        {resumeData.languages.map(lang => (
+          <div class="flex items-baseline justify-between gap-4">
+            <span class="text-sm" style="color: var(--color-on-surface)">{lang.name}</span>
+            <span class="text-[10px] font-mono px-2 py-0.5" style="background-color: var(--color-surface-container); color: var(--color-on-surface-variant)">{lang.level}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
