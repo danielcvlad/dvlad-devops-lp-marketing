@@ -130,14 +130,15 @@ export const resumeData = {
       name: "Azure Identity & Access Administrator Associate",
       id: "SC-300",
       issuer: "MICROSOFT",
-      level: "Associate"
+      level: "Associate",
+      verifyUrl: "https://learn.microsoft.com/en-us/users/danielvlad-3730/credentials/6f2e319c960f8316"
     },
     {
       name: "Azure Administrator Associate",
       id: "AZ-104",
       issuer: "MICROSOFT",
       level: "Associate",
-      verifyUrl: "https://learn.microsoft.com/en-us/users/danielvlad-3730/credentials/6f2e319c960f8316"
+      verifyUrl: "https://learn.microsoft.com/en-us/users/danielvlad-3730/credentials/certification/azure-administrator?tab=credentials-tab"
     },
     {
       name: "Azure Virtual Desktop Specialty",
