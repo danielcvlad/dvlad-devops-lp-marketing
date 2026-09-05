@@ -124,7 +124,7 @@ export const resumeData = {
       id: "AZ-500",
       issuer: "MICROSOFT",
       level: "Associate",
-      verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/6F2E319C960F8316?sharingId=1831A122A9A3BA9"
+      verifyUrl: "https://learn.microsoft.com/en-us/users/danielvlad-3730/credentials/certification/azure-security-engineer?tab=credentials-tab"
     },
     {
       name: "Azure Identity & Access Administrator Associate",
@@ -137,7 +137,7 @@ export const resumeData = {
       id: "AZ-104",
       issuer: "MICROSOFT",
       level: "Associate",
-      verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/DanielVlad-3730/4DAD0DB97E5412CB?sharingId=1831A122A9A3BA9"
+      verifyUrl: "https://learn.microsoft.com/en-us/users/danielvlad-3730/credentials/6f2e319c960f8316"
     },
     {
       name: "Azure Virtual Desktop Specialty",
