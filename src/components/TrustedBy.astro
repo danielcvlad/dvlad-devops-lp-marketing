@@ -1,5 +1,12 @@
 ---
-import OrangeLogo from '../assets/orange-logo.png';
+// Neutral geometric marks rather than company logos. Naming an employer is
+// referential use; reproducing their logo is not, and Microsoft's brand
+// guidelines require an express licence for theirs.
+const roles = [
+  { company: "Roland Berger", role: "DevSecOps Engineer", color: "secondary", icon: "layers" },
+  { company: "Microsoft", role: "Support Escalation Engineer", color: "primary", icon: "hex" },
+  { company: "Orange", role: "Operational Specialist", color: "on-surface", icon: "ring" }
+];
 ---
 
 <section class="py-16 border-t" style="background-color: var(--color-surface-container-low); border-color: rgba(65, 71, 84, 0.1)">
@@ -11,40 +18,48 @@ import OrangeLogo from '../assets/orange-logo.png';
       </p>
     </div>
     <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 w-full max-w-lg md:max-w-none">
-      <div class="flex items-center gap-3 w-full justify-start md:justify-center opacity-80 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 flex items-center justify-center shrink-0">
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" style="color: var(--color-secondary)">
-            <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.5L19 8l-7 3.5L5 8l7-3.5zM4 9.5l7 3.5v7l-7-3.5v-7zm16 0v7l-7 3.5v-7l7-3.5z"/>
-          </svg>
+      {roles.map(item => (
+        <div class="flex items-center gap-3 w-full justify-start md:justify-center opacity-80 hover:opacity-100 transition-opacity">
+          <div class="w-10 h-10 flex items-center justify-center shrink-0">
+            <svg
+              viewBox="0 0 24 24"
+              width="30"
+              height="30"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              style={`color: var(--color-${item.color})`}
+            >
+              {item.icon === "layers" && (
+                <>
+                  <path d="M12 3l9 4.8-9 4.8-9-4.8L12 3z" />
+                  <path d="M3 12.2l9 4.8 9-4.8" />
+                  <path d="M3 16.4l9 4.8 9-4.8" />
+                </>
+              )}
+              {item.icon === "hex" && (
+                <>
+                  <path d="M12 2.6l8.2 4.7v9.4L12 21.4l-8.2-4.7V7.3L12 2.6z" />
+                  <path d="M12 8.2l3.6 2.1v4.2L12 16.6l-3.6-2.1v-4.2L12 8.2z" />
+                </>
+              )}
+              {item.icon === "ring" && (
+                <>
+                  <circle cx="12" cy="12" r="8.6" />
+                  <circle cx="12" cy="12" r="3.2" />
+                </>
+              )}
+            </svg>
+          </div>
+          <div class="text-left">
+            <div class="text-lg font-bold" style={`color: var(--color-${item.color})`}>{item.company}</div>
+            <div class="text-xs" style="color: var(--color-on-surface-variant)">{item.role}</div>
+          </div>
         </div>
-        <div class="text-left">
-          <div class="text-lg font-bold" style="color: var(--color-secondary)">Roland Berger</div>
-          <div class="text-xs" style="color: var(--color-on-surface-variant)">DevSecOps Engineer</div>
-        </div>
-      </div>
-      <div class="flex items-center gap-3 w-full justify-start md:justify-center opacity-80 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 flex items-center justify-center shrink-0">
-          <svg viewBox="0 0 23 23" width="32" height="32" role="img" aria-label="Microsoft">
-            <rect x="1" y="1" width="10" height="10" fill="#F25022"/>
-            <rect x="12" y="1" width="10" height="10" fill="#7FBA00"/>
-            <rect x="1" y="12" width="10" height="10" fill="#00A4EF"/>
-            <rect x="12" y="12" width="10" height="10" fill="#FFB900"/>
-          </svg>
-        </div>
-        <div class="text-left">
-          <div class="text-lg font-bold" style="color: var(--color-primary)">Microsoft</div>
-          <div class="text-xs" style="color: var(--color-on-surface-variant)">Support Escalation Engineer</div>
-        </div>
-      </div>
-      <div class="flex items-center gap-3 w-full justify-start md:justify-center opacity-80 hover:opacity-100 transition-opacity">
-        <div class="w-10 h-10 flex items-center justify-center shrink-0">
-          <img src={OrangeLogo.src} alt="Orange" width="32" height="32" class="object-contain" />
-        </div>
-        <div class="text-left">
-          <div class="text-lg font-bold" style="color: var(--color-on-surface)">Orange</div>
-          <div class="text-xs" style="color: var(--color-on-surface-variant)">Operational Specialist</div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
