@@ -3,6 +3,8 @@ export interface Certification {
   id: string;
   issuer: string;
   level: string;
+  /** Slug into the local badge images; falls back to Microsoft badge art by level. */
+  badge?: string;
   /** Omitted when no credential URL is held — the row then renders unlinked. */
   verifyUrl?: string;
 }
@@ -148,13 +150,16 @@ export const resumeData = {
       name: "DevOps Practitioner",
       id: "BOOTCAMP",
       issuer: "TECHWORLD WITH NANA",
-      level: "Practitioner"
+      level: "Practitioner",
+      badge: "devops-practitioner",
+      verifyUrl: "https://www.credly.com/badges/350b90bb-27be-4aea-aa6e-14d483d9dadd"
     },
     {
       name: "DevSecOps Practitioner",
       id: "BOOTCAMP",
       issuer: "TECHWORLD WITH NANA",
-      level: "Practitioner"
+      level: "Practitioner",
+      badge: "devsecops-practitioner"
     }
   ],
 

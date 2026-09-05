@@ -1,7 +1,15 @@
 ---
 import { resumeData } from '../data/resume';
 
-// Levels with no Microsoft badge art fall back to a monogram tile.
+import devopsBadge from '../assets/badge-devops-practitioner.png';
+import devsecopsBadge from '../assets/badge-devsecops-practitioner.png';
+
+// Non-Microsoft badge art, served locally so it survives Credly moving files.
+const localBadges: Record<string, string> = {
+  "devops-practitioner": devopsBadge.src,
+  "devsecops-practitioner": devsecopsBadge.src
+};
+
 const certBadges: Record<string, string> = {
   expert: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
   associate: "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
@@ -47,7 +55,7 @@ const azureCount = certs.filter(c => c.issuer === "MICROSOFT").length;
     </div>
     <div class="p-0 text-left">
       {certs.map((cert, index) => {
-        const badge = certBadges[cert.level.toLowerCase()];
+        const badge = (cert.badge && localBadges[cert.badge]) || certBadges[cert.level.toLowerCase()];
         const rowStyle = index === certs.length - 1 ? '' : 'border-bottom: 1px solid rgba(65, 71, 84, 0.1)';
         // A guessed verify URL is worse than no link at all.
         const Tag = cert.verifyUrl ? 'a' : 'div';
